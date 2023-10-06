@@ -1,0 +1,103 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/main_nav.ejs') %>
+
+<main class="container">
+  <div class="jumbotron">
+    <h1>Welcome to <%= title %> Page</h1>
+  </div>
+
+  <!-- Contact Information -->
+  <div class="panel panel-default">
+    <div class="panel-heading">Contact Page Please write your information and the message. Submit the request</div>
+    <div class="panel-body">
+
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <form action="asdf123@gmail.com" method="post">
+		
+	
+    
+    
+    
+    <fieldset>
+    <legend>Personal Information</legend>
+    <p>
+        <label for="txtBT">First Name</label><br>
+        <textarea id="txtBT" cols="50" name="txtBT" rows="1" >---</textarea>
+    </p>
+    <p>
+        <label for="txtIMPROVE">Last Name</label><br>
+        <textarea id="txtIMPROVE" cols="50" name="txtIMPROVE" rows="1" >---</textarea>
+    </p>
+    <p>
+        <label for="txtOther">Phone Number</label><br>
+        <textarea id="txtOther" cols="50" name="txtOther" rows="1" >---</textarea>
+    </p>
+    <p>
+        <label for="txtOther">Email</label><br>
+        <textarea id="txtOther" cols="50" name="txtOther" rows="1" >---</textarea>
+    </p>
+    </fieldset>
+    
+    <fieldset>
+    <p>
+        <label for="txtOther">Message</label><br>
+        <textarea id="txtOther" cols="50" name="txtOther" rows="1" >---</textarea>
+    </p>
+    </fieldset>
+
+    <p>
+        <input name="btnSubmit" type="submit" value="Complete Registration">
+        <input name="btnReset" type="reset" value="Clear Form">
+    </p>
+
+</form>
+
+
+
+</main>
+
+<%- include ('partials/bottom_nav.ejs') %>
+<%- include ('partials/footer.ejs') %>
+
+
+
+
+
+<javascript>
+    const express = require('express');
+    const bodyParser = require('body-parser');
+    const app = express();
+    
+    // Enable body parser to read POST data
+    app.use(bodyParser.urlencoded({ extended: true }));
+    
+    app.set('view engine', 'ejs');
+    
+    // Define GET route for contact page
+    app.get('/contact', (req, res) => {
+        res.render('contact', { title: 'Contact Us' });
+    });
+    
+    // Define POST route to handle form submission
+    app.post('/submit-form', (req, res) => {
+        const firstName = req.body.firstName;
+        const lastName = req.body.lastName;
+        const phoneNumber=req.body.phoneNumber;
+        const emailAddress=req.body.emailAddress;
+        const messageBox=req.body.messageBox;
+    
+        console.log(`Received new message from ${firstName} ${lastName}: ${messageBox}`);
+    
+        // Here you would typically save the data to a database, 
+        // but for this example we're just printing it to the console
+    
+        res.redirect('/');
+    });
+    
+    app.listen(3000, () => {
+        console.log('Server is running on port 3000');
+    });
+   </javascript>
